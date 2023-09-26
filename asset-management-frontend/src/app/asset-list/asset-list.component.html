@@ -1,0 +1,38 @@
+<!-- asset-list.component.html -->
+<thead class="bg-gray-800 text-white">
+  <tr>
+    <th class="py-2 px-4">ID</th>
+    <th class="py-2 px-4">Name</th>
+    <th class="py-2 px-4">Purchase Date</th>
+    <th class="py-2 px-4">Purchase Price</th>
+    <th class="py-2 px-4">Asset Type</th>
+    <th class="py-2 px-4">Notes</th>
+    <th class="py-2 px-4">Actions</th>
+  </tr>
+</thead>
+<tbody class="text-gray-700">
+  <tr *ngFor="let asset of assets">
+    <td class="py-2 px-4 border">{{ asset.id }}</td>
+    <td class="py-2 px-4 border">{{ asset.name }}</td>
+    <td class="py-2 px-4 border">{{ asset.purchase_date }}</td>
+    <td class="py-2 px-4 border">{{ asset.purchase_price }}</td>
+    <td class="py-2 px-4 border">{{ asset.asset_type }}</td>
+    <td class="py-2 px-4 border">{{ asset.notes }}</td>
+    <td class="py-2 px-4 border">
+      <button class="bg-blue-500 text-white p-2 rounded hover:bg-blue-700" (click)="updateAsset(asset)">Update</button>
+      <button class="bg-red-500 text-white p-2 rounded hover:bg-red-700" (click)="deleteAsset(asset.id)">Delete</button>
+    </td>
+  </tr>
+</tbody>
+
+  
+<!-- asset-list.component.html -->
+<form #assetForm="ngForm" (ngSubmit)="addAsset(assetForm.value)" class="mt-4">
+  <input type="text" name="name" ngModel placeholder="Asset Name" class="border p-2 rounded">
+  <input type="date" name="purchase_date" ngModel placeholder="Purchase Date" class="border p-2 rounded ml-2">
+  <input type="number" name="purchase_price" ngModel placeholder="Purchase Price" class="border p-2 rounded ml-2">
+  <input type="text" name="asset_type" ngModel placeholder="Asset Type" class="border p-2 rounded ml-2">
+  <input type="text" name="notes" ngModel placeholder="Notes" class="border p-2 rounded ml-2">
+  <button type="submit" class="bg-green-500 text-white p-2 rounded hover:bg-green-700 mt-2 ml-2">Add Asset</button>
+</form>
+
